@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jaydenxiao.common.baserx.GsonDConverterFactory;
-import com.jaydenxiao.common.commonutils.LogUtils;
 import com.jaydenxiao.common.commonutils.NetWorkUtils;
 
 import java.io.File;
@@ -21,12 +20,10 @@ import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Cookie;
 import okhttp3.CookieJar;
-import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -83,50 +80,6 @@ public class Api {
      */
     private static final String CACHE_CONTROL_AGE = "max-age=0";
 
-
-    /**
-     *  增加统一请求参数
-     */
-    Interceptor paramsInterceptor = new Interceptor() {
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            //获取到request
-            Request request = chain.request();
-            //获取到方法
-            String method = request.method();
-            //get请求的封装
-            if(method.equals(GET)){
-                //获取到请求地址api
-                HttpUrl httpUrl = request.url();
-                String url = httpUrl.toString();
-                if(url.indexOf("?") > 0){
-                    url = url + "&requestUser=hotel&requestPassword=123456";
-                }else{
-                    url = url + "?requestUser=hotel&requestPassword=123456";
-                }
-                LogUtils.logd(TAG,"GET=====>"+url);
-                request = request.newBuilder().url(url).build();
-            }else if(method.equals(POST)){
-                // 构造新的请求表单
-                FormBody.Builder builder = new FormBody.Builder();
-                FormBody body;
-                RequestBody requestBody = request.body();
-                if( requestBody instanceof FormBody ){
-                    body = (FormBody) request.body();
-                    //将以前的参数添加
-                    for (int i = 0; i < body.size(); i++) {
-                        builder.add(body.encodedName(i), body.encodedValue(i));
-                    }
-                    //追加新的参数
-                    builder.add("requestUser", "hotel");
-                    builder.add("requestPassword", "123456");
-                    //构造新的请求体
-                    request = request.newBuilder().post(builder.build()).build();
-                }
-            }
-            return chain.proceed(request);
-        }
-    };
     /**
      * 设置Cookie
      */
@@ -171,7 +124,6 @@ public class Api {
                 .addNetworkInterceptor(mRewriteCacheControlInterceptor)
                 .addInterceptor(headerInterceptor)
                 .addInterceptor(logInterceptor)
-                .addInterceptor(paramsInterceptor)
                 .cache(cache)
                 .cookieJar(cookieJar)
                 .build();

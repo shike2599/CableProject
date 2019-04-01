@@ -5,5 +5,5 @@ package com.lichee.cable.cable.app;
  */
 
 public class AppConstant {
-    public static final String HOST_URL = "http://192.168.1.21:8080";
+    public static final String HOST_URL = "http://192.168.1.106:8080";
 }

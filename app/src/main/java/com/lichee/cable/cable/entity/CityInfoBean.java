@@ -41,4 +41,13 @@ public  class CityInfoBean implements Serializable{
     public void setCity_name(String city_name) {
         this.city_name = city_name;
     }
+
+    @Override
+    public String toString() {
+        return "CityInfoBean{" +
+                "city_isdeleted=" + city_isdeleted +
+                ", city_id=" + city_id +
+                ", city_name='" + city_name + '\'' +
+                '}';
+    }
 }

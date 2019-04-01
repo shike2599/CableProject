@@ -60,4 +60,15 @@ public  class CableInfoBean implements Serializable{
     public void setEnd_station(String end_station) {
         this.end_station = end_station;
     }
+
+    @Override
+    public String toString() {
+        return "CableInfoBean{" +
+                "cable_status='" + cable_status + '\'' +
+                ", cable_name='" + cable_name + '\'' +
+                ", cable_id='" + cable_id + '\'' +
+                ", start_station='" + start_station + '\'' +
+                ", end_station='" + end_station + '\'' +
+                '}';
+    }
 }

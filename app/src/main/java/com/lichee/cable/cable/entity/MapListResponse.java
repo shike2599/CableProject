@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lichee on 2019/3/30.
@@ -19,17 +20,17 @@ public class MapListResponse implements Serializable {
      * stationInfo : [{"ss_id":"1","station_name":"??1????","station_level":"3"},{"ss_id":"2","station_name":"??2????","station_level":"3"},{"ss_id":"3","station_name":"??1????","station_level":"3"},{"ss_id":"4","station_name":"??2????","station_level":"3"},{"ss_id":"5","station_name":"??3????","station_level":"3"},{"ss_id":"6","station_name":"?????","station_level":"2"},{"ss_id":"7","station_name":"?????","station_level":"2"},{"ss_id":"8","station_name":"??????","station_level":"1"}]
      */
 
-    private GeocoordMapBean geocoordMap;
+    private Map<String,List<Double>> geocoordMap;
     private List<StationIdBean> stationId;
     private List<CableInfoBean> cableInfo;
     private List<CityInfoBean> cityInfo;
     private List<StationInfoBean> stationInfo;
 
-    public GeocoordMapBean getGeocoordMap() {
+    public Map<String,List<Double>> getGeocoordMap() {
         return geocoordMap;
     }
 
-    public void setGeocoordMap(GeocoordMapBean geocoordMap) {
+    public void setGeocoordMap(Map<String,List<Double>> geocoordMap) {
         this.geocoordMap = geocoordMap;
     }
 
@@ -64,58 +65,35 @@ public class MapListResponse implements Serializable {
     public void setStationInfo(List<StationInfoBean> stationInfo) {
         this.stationInfo = stationInfo;
     }
+//
+//    private class GeocoordMap implements Serializable{
+//        private Map<String,List<Double>> data;
+//
+//        public Map<String, List<Double>> getData() {
+//            return data;
+//        }
+//
+//        public void setData(Map<String, List<Double>> data) {
+//            this.data = data;
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return "GeocoordMap{" +
+//                    "data=" + data +
+//                    '}';
+//        }
+//    }
 
-    public static class GeocoordMapBean {
-        @SerializedName("??????")
-        private List<Double> _$13; // FIXME check this code
-        @SerializedName("??3????")
-        private List<Double> _$34; // FIXME check this code
-        @SerializedName("??2????")
-        private List<Double> _$220; // FIXME check this code
-        @SerializedName("?????")
-        private List<Double> _$252; // FIXME check this code
-        @SerializedName("??1????")
-        private List<Double> _$1143; // FIXME check this code
 
-        public List<Double> get_$13() {
-            return _$13;
-        }
-
-        public void set_$13(List<Double> _$13) {
-            this._$13 = _$13;
-        }
-
-        public List<Double> get_$34() {
-            return _$34;
-        }
-
-        public void set_$34(List<Double> _$34) {
-            this._$34 = _$34;
-        }
-
-        public List<Double> get_$220() {
-            return _$220;
-        }
-
-        public void set_$220(List<Double> _$220) {
-            this._$220 = _$220;
-        }
-
-        public List<Double> get_$252() {
-            return _$252;
-        }
-
-        public void set_$252(List<Double> _$252) {
-            this._$252 = _$252;
-        }
-
-        public List<Double> get_$1143() {
-            return _$1143;
-        }
-
-        public void set_$1143(List<Double> _$1143) {
-            this._$1143 = _$1143;
-        }
+    @Override
+    public String toString() {
+        return "MapListResponse{" +
+                "geocoordMap=" + geocoordMap +
+                ", stationId=" + stationId +
+                ", cableInfo=" + cableInfo +
+                ", cityInfo=" + cityInfo +
+                ", stationInfo=" + stationInfo +
+                '}';
     }
-
 }

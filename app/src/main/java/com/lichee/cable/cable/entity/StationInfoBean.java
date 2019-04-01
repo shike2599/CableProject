@@ -40,4 +40,13 @@ public  class StationInfoBean implements Serializable{
     public void setStation_level(String station_level) {
         this.station_level = station_level;
     }
+
+    @Override
+    public String toString() {
+        return "StationInfoBean{" +
+                "ss_id='" + ss_id + '\'' +
+                ", station_name='" + station_name + '\'' +
+                ", station_level='" + station_level + '\'' +
+                '}';
+    }
 }
